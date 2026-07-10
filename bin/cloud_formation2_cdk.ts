@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 import * as cdk from 'aws-cdk-lib/core';
-import { CloudFormation2CdkStack } from '../lib/cloud_formation2_cdk-stack';
+import { ExpenseTrackerServicesDeployStack } from '../lib/cloud_formation2_cdk-stack';
 
 const app = new cdk.App();
-new CloudFormation2CdkStack(app, 'CloudFormation2CdkStack', {
+new ExpenseTrackerServicesDeployStack(app, 'ExpenseTrackerServicesDeployStack', {
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
    * but a single synthesized template can be deployed anywhere. */
