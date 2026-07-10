@@ -78,23 +78,23 @@ export class ExpenseTrackerServicesDeployStack extends cdk.Stack {
     });
 
     // Outputs
-    new cdk.CfnOutput(this, "VpcId", {
+    new cdk.CfnOutput(this, "VpcIdOutput", {
       value: vpc.vpcId,
     });
 
-    new cdk.CfnOutput(this, "PublicSubnet1", {
+    new cdk.CfnOutput(this, "PublicSubnet1Output", {
       value: vpc.publicSubnets[0].subnetId,
     });
 
-    new cdk.CfnOutput(this, "PublicSubnet2", {
+    new cdk.CfnOutput(this, "PublicSubnet2Output", {
       value: vpc.publicSubnets[1].subnetId,
     });
 
-    new cdk.CfnOutput(this, "PrivateSubnet1", {
+    new cdk.CfnOutput(this, "PrivateSubnet1Output", {
       value: vpc.privateSubnets[0].subnetId,
     });
 
-    new cdk.CfnOutput(this, "PrivateSubnet2", {
+    new cdk.CfnOutput(this, "PrivateSubnet2Output", {
       value: vpc.privateSubnets[1].subnetId,
     });
   }
