@@ -70,12 +70,14 @@ export class ExpenseTrackerServicesDeployStack extends cdk.Stack {
     });
 
     // Store Private Subnets
-    vpc.privateSubnets.forEach((subnet, index) => {
-      new StringParameter(this, `PrivateSubnet${index}`, {
-        parameterName: `/expense-tracker/private-subnet-${index}`,
-        stringValue: subnet.subnetId,
+    if (vpc.privateSubnets.length > 0) {
+      vpc.privateSubnets.forEach((subnet, index) => {
+        new StringParameter(this, `PrivateSubnet${index}`, {
+          parameterName: `/expense-tracker/private-subnet-${index}`,
+          stringValue: subnet.subnetId,
+        });
       });
-    });
+    }
 
     // Outputs
     new cdk.CfnOutput(this, "VpcIdOutput", {
@@ -90,12 +92,16 @@ export class ExpenseTrackerServicesDeployStack extends cdk.Stack {
       value: vpc.publicSubnets[1].subnetId,
     });
 
-    new cdk.CfnOutput(this, "PrivateSubnet1Output", {
-      value: vpc.privateSubnets[0].subnetId,
-    });
+    if (vpc.privateSubnets.length > 0) {
+      new cdk.CfnOutput(this, "PrivateSubnet1Output", {
+        value: vpc.privateSubnets[0].subnetId,
+      });
+    }
 
-    new cdk.CfnOutput(this, "PrivateSubnet2Output", {
-      value: vpc.privateSubnets[1].subnetId,
-    });
+    if (vpc.privateSubnets.length > 1) {
+      new cdk.CfnOutput(this, "PrivateSubnet2Output", {
+        value: vpc.privateSubnets[1].subnetId,
+      });
+    }
   }
 }
